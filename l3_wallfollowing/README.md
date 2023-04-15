@@ -1,11 +1,6 @@
-# Lab 3: Wall Following
+# Wall Following
 
-## I. Learning Goals
-
-- PID Controllers
-- Driving the car autonomously via Wall Following
-
-## II. Review of PID in the time domain
+## PID in the time domain
 
 A PID controller is a way to maintain certain parameters of a system around a specified set point. PID controllers are used in a variety of applications requiring closed-loop control, such as in the VESC speed controller on your car.
 
@@ -15,7 +10,7 @@ The general equation for a PID controller in the time domain, as discussed in le
 
 Here, ![](https://latex.codecogs.com/svg.latex?K_p), ![](https://latex.codecogs.com/svg.latex?K_i), and ![](https://latex.codecogs.com/svg.latex?K_d) are constants that determine how much weight each of the three components (proportional, integral, derivative) contribute to the control output ![](https://latex.codecogs.com/svg.latex?u(t)). ![](https://latex.codecogs.com/svg.latex?u(t)) in our case is the steering angle we want the car to drive at. The error term ![](https://latex.codecogs.com/svg.latex?e(t)) is the difference between the set point and the parameter we want to maintain around that set point.
 
-## III. Wall Following
+## Wall Following
 
 In the context of our car, the desired distance to the wall should be our set point for our controller, which means our error is the difference between the desired and actual distance to the wall. This raises an important question: how do we measure the distance to the wall, and at what point in time? One option would simply be to consider the distance to the right wall at the current time ![](https://latex.codecogs.com/svg.latex?t) (let's call it ![](https://latex.codecogs.com/svg.latex?D_t)). Let's consider a generic orientation of the car with respect to the right wall and suppose the angle between the car's x-axis and the axis in the direction along the wall is denoted by ![](https://latex.codecogs.com/svg.latex?\alpha). We will obtain two laser scans (distances) to the wall:
 one 90 degrees to the right of the car's x-axis (beam b in the figure), and one (beam a) at an angle ![](https://latex.codecogs.com/svg.latex?\theta) ( ![](https://latex.codecogs.com/svg.latex?0<\theta\leq70) degrees) to the first beam. Suppose these two laser scans return distances a and b, respectively.
@@ -57,19 +52,7 @@ So, in summary, here's what we need to do:
 5. Use the steering angle you computed in the previous step to compute a safe driving speed.
 6. Publish the steering angle and driving speed to the `/drive` topic in simulation.
 
-## IV. Implementation
+## Implementation
 
-Implement wall following to make the car drive autonomously around the Levine Hall map. Follow the inner walls of Levine. Which means follow left if the car is going counter-clockwise in the loop. (The first race we run will be counter-clockwise). You can implement this node in either C++ or Python.
-
-## V. Deliverables and Submission
-
-**Deliverable 1**: After you're finished, update the entire skeleton package directory with your `wall_follow` package and directly commit and push to the repo Github classroom created for you.
-
-**Deliverable 2**: Make a screen cast of running your wall following node in the simulation. Include a link to the video on YouTube in **`SUBMISSION.md`**.
-
-## VI: Grading Rubric
-
-- Compilation: **10** Points
-- Implemented PID: **40** Points
-- Tuned PID: **40** Points
-- Video: **10** Points
+Implemented wall following to make the car drive autonomously around the Levine Hall map. 
+https://www.youtube.com/watch?v=Ofzd1Tf_rwM
