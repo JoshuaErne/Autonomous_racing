@@ -29,7 +29,7 @@ We can then express ![](https://latex.codecogs.com/svg.latex?D_t) as
 
 to get the current distance between the car and the right wall. What's our error term ![](https://latex.codecogs.com/svg.latex?e(t)), then? It's simply the difference between the desired distance and actual distance! For example, if our desired distance is 1 meter from the wall, then ![](https://latex.codecogs.com/svg.latex?e(t)) becomes ![](https://latex.codecogs.com/svg.latex?1-D_t).
 	
-However, we have a problem on our hands. Remember that this is a race: your car will be traveling at a high speed and therefore will have a non-instantaneous response to whatever speed and servo control you give to it. If we simply use the current distance to the wall, we might end up turning too late, and the car may crash. Therefore, we must look to the future and project the car ahead by a certain lookahead distance (let's call it ![](https://latex.codecogs.com/svg.latex?L)). Our new distance ![](https://latex.codecogs.com/svg.latex?D_{t+1}) will then be
+If we simply use the current distance to the wall, we might end up turning too late, and the car may crash. Therefore, we must look to the future and project the car ahead by a certain lookahead distance (let's call it ![](https://latex.codecogs.com/svg.latex?L)). Our new distance ![](https://latex.codecogs.com/svg.latex?D_{t+1}) will then be
 
 ![](https://latex.codecogs.com/svg.latex?D_{t+1}=D_t+L\mbox{sin}(\alpha))
 
@@ -37,7 +37,7 @@ However, we have a problem on our hands. Remember that this is a race: your car 
 
 *Figure 2: Finding the future distance from the car to the wall*
 
-We're almost there. Our control algorithm gives us a steering angle for the VESC, but we would also like to slow the car down around corners for safety. We can compute the speed in a step-like fashion based on the steering angle, or equivalently the calculated error, so that as the angle exceeds progressively larger amounts, the speed is cut in discrete increments. For this lab, a good starting point for the speed control algorithm is:
+Our control algorithm gives us a steering angle for the VESC, but we would also like to slow the car down around corners for safety. We can compute the speed in a step-like fashion based on the steering angle, or equivalently the calculated error, so that as the angle exceeds progressively larger amounts, the speed is cut in discrete increments. For this lab, a good starting point for the speed control algorithm is:
 
 - If the steering angle is between 0 degrees and 10 degrees, the car should drive at 1.5 meters per second.
 - If the steering angle is between 10 degrees and 20 degrees, the speed should be 1.0 meters per second.
